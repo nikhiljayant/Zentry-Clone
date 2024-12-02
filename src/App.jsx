@@ -1,7 +1,13 @@
 import React from "react";
+// Component
+import Hero from "./components/Hero";
 
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <main className="relative min-h-screen w-screen overflow-x-hidden">
+      <Hero />
+    </main>
+  );
 };
 
 export default App;
