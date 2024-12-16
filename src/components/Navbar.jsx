@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Component
 import Button from "./Button";
 // Icon
@@ -15,8 +15,17 @@ const Navbar = () => {
   const audioElementRef = useRef(null);
 
   const toggleAudioIndicator = () => {
-    // 1:30:44
+    setIsAudioPlaying((prev) => !prev);
+    setIsIndicatorActive((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (isAudioPlaying) {
+      audioElementRef.current.play();
+    } else {
+      audioElementRef.current.pause();
+    }
+  }, [isAudioPlaying]);
 
   return (
     <div
@@ -58,15 +67,16 @@ const Navbar = () => {
                 className="hidden"
                 src="/audio/loop.mp3"
                 loop
-              >
-                {[1, 2, 3, 4].map((bar) => (
-                  <div
-                    key={bar}
-                    className={`${isIndicatorActive ? "active" : ""}`}
-                    style={{ animationDelay: `${bar * 0.1}s` }}
-                  />
-                ))}
-              </audio>
+              />
+              {[1, 2, 3, 4].map((bar) => (
+                <div
+                  key={bar}
+                  className={`indicator-line ${
+                    isIndicatorActive ? "active" : ""
+                  }`}
+                  style={{ animationDelay: `${bar * 0.1}s` }}
+                />
+              ))}
             </button>
           </div>
         </nav>
