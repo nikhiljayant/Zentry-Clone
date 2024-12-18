@@ -49,7 +49,7 @@ body {
   }
 
   .floating-nav {
-    @apply bg-black rounded-lg border;
+    @apply bg-blue-200 rounded-lg border;
   }
 
   .absolute-center {
